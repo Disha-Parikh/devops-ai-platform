@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+        name: backend
+        namespace: apps
+
+spec:
+        replicas: 2
+        selector:
+                matchLabels:
+                        app: backend
+
+        template:
+                metadata:
+                        labels:
+                                app: backend
+                spec:
+                        containers:
+                        - name: backend
+                          image: dishaparikh98/backend:latest-2
+                          ports:
+                          - containerPort: 3000
+                          env:
+                          - name: REDIS_HOST
+                            value: redis.apps.svc.cluster.local
+                          - name: OTEL_SERVICE_NAME
+                            value: backend-service
+                          - name: OTEL_EXPORTER_OTLP_ENDPOINT
+                            value: http://otel-collector.observability:4317
+                          - name: OTEL_EXPORTER_OTLP_PROTOCOL
+                            value: grpc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+        name: backend
+        namespace: apps
+spec:
+        selector:
+                app: backend
+        ports:
+        - port: 3000
