@@ -6,9 +6,15 @@ metadata:
 spec: 
         project: default
         source:
-                repoURL: https://github.com/Disha-Parikh/devops-ai-platform
-                targetRevision: main
-                path: gitops-repo/apps
+        - repoURL: https://github.com/Disha-Parikh/devops-ai-platform
+          targetRevision: main
+          path: gitops-repo/apps
+        - repoURL: https://github.com/Disha-Parikh/devops-ai-platform
+          targetRevision: main
+          path: gitops-repo/monitoring
+        - repoURL: https://github.com/Disha-Parikh/devops-ai-platform
+          targetRevision: main
+          path: gitops-repo/observability
         destination:
                 server: https://kubernetes.default.svc
                 namespace: apps
