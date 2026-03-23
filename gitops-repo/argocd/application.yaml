@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/Disha-Parikh/devops-ai-platform
     targetRevision: main
-    path: gitops-repo
+    path: gitops-repo/
 
   destination:
     server: https://kubernetes.default.svc
